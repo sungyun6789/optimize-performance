@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "BM YEONSUNG";
+  src: url("subset-BMYEONSUNG.woff2") format("woff2"),
+    url("subset-BMYEONSUNG.woff") format("woff"),
+    url("subset-BMYEONSUNG.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
