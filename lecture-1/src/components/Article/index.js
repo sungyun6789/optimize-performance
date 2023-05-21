@@ -17,37 +17,40 @@ function getParametersForUnsplash({ width, height, quality, format }) {
  * (Markdown으로 된 문자열의 특수문자를 제거하기 위함)
  * */
 function removeSpecialCharacter(str) {
-  const removeCharacters = [
-    "#",
-    "_",
-    "*",
-    "~",
-    "&",
-    ";",
-    "!",
-    "[",
-    "]",
-    "`",
-    ">",
-    "\n",
-    "=",
-    "-",
-  ];
-  let _str = str;
-  let i = 0,
-    j = 0;
+  // 병목현상이 발생하는 코드 리팩토링
+  // const removeCharacters = [
+  //   "#",
+  //   "_",
+  //   "*",
+  //   "~",
+  //   "&",
+  //   ";",
+  //   "!",
+  //   "[",
+  //   "]",
+  //   "`",
+  //   ">",
+  //   "\n",
+  //   "=",
+  //   "-",
+  // ];
+  // let _str = str;
+  // let i = 0,
+  //   j = 0;
+  // for (i = 0; i < removeCharacters.length; i++) {
+  //   j = 0;
+  //   while (j < _str.length) {
+  //     if (_str[j] === removeCharacters[i]) {
+  //       _str = _str.substring(0, j).concat(_str.substring(j + 1));
+  //       continue;
+  //     }
+  //     j++;
+  //   }
+  // }
+  // return _str;
 
-  for (i = 0; i < removeCharacters.length; i++) {
-    j = 0;
-    while (j < _str.length) {
-      if (_str[j] === removeCharacters[i]) {
-        _str = _str.substring(0, j).concat(_str.substring(j + 1));
-        continue;
-      }
-      j++;
-    }
-  }
-
+  let _str = str.substring(0, 300);
+  _str = str.replace(/#_*~&;![]`>\n=-/g, "");
   return _str;
 }
 
@@ -73,8 +76,8 @@ function Article(props) {
           src={
             props.image +
             getParametersForUnsplash({
-              width: 1200,
-              height: 1200,
+              width: 240, // 실제 필요한 크기는 120px이지만 레티나 디스플레이같은 화면을 고려해 240px로 가져옴
+              height: 240, // 실제 필요한 크기는 120px이지만 레티나 디스플레이같은 화면을 고려해 240px로 가져옴
               quality: 80,
               format: "jpg",
             })
